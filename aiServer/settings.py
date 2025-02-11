@@ -146,3 +146,6 @@ CORS_ALLOW_METHODS = [
 
 
 ALLOWED_HOSTS = ['*']
+
+import os
+os.environ["PATH"] += os.pathsep + "/usr/bin/"
