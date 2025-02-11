@@ -14,20 +14,23 @@ def upload_audio(request):
     file_name = default_storage.save("uploads/" + file.name, ContentFile(file.read()))
     file_path = default_storage.path(file_name)
 
-    # 소리 감지
-    sound_class = classify_sound(file_path)
+    try:
+        # 소리 감지
+        sound_class = classify_sound(file_path)
 
-    # 음성 인식
-    transcription = transcribe_audio(file_path)
+        # 음성 인식
+        transcription = transcribe_audio(file_path)
 
-    # 결과 반환
-    response_data = {
-        "sound_class": sound_class,
-        "transcription": transcription["text"],
-        "detected_keywords": transcription["keywords"]
-    }
-
-    # 파일 삭제 (선택 사항)
-    os.remove(file_path)
+        # 결과 반환
+        response_data = {
+            "sound_class": sound_class,
+            "transcription": transcription["text"],
+            "detected_keywords": transcription["keywords"]
+        }
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
+    finally:
+        # 파일 삭제 (선택 사항)
+        os.remove(file_path)
 
     return Response(response_data)

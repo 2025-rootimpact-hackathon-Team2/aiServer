@@ -129,3 +129,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',  # JSON 응답만 허용
     ),
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://43.202.242.205:8080",  # Spring Boot 서버
+    "http://43.202.242.205:3000",  # React 서버
+]
