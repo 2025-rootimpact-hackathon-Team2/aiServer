@@ -25,8 +25,6 @@ SECRET_KEY = 'django-insecure-3zll&q3a*lt1t=9ajy^#fhkh2!&^os$x52_g*d(d+ndul-$l@z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -38,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "soundAi",
-    "rest_framework"
+    "rest_framework",
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'aiServer.urls'
@@ -106,11 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -131,6 +129,20 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://43.202.242.205:8080",  # Spring Boot 서버
-    "http://43.202.242.205:3000",  # React 서버
+    'http://43.202.242.205:3000',  # 배포된 React 서버
+    'http://43.202.242.205:8080',  # Spring Boot 서버
+    'http://43.202.242.205',  # Django 서버 (포트 80)
+    'https://your-frontend-production-domain.com',  # 실제 프론트엔드 배포 도메인
 ]
+CORS_ALLOW_CREDENTIALS = True  # 쿠키 및 인증 정보 허용
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+
+ALLOWED_HOSTS = ['*']
