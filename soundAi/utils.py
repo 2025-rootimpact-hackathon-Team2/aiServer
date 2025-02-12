@@ -12,7 +12,7 @@ yamnet_model = hub.load("https://tfhub.dev/google/yamnet/1")
 whisper_model = whisper.load_model("small")
 
 # YAMNet 클래스 매핑 로컬 파일 경로 (다운로드한 CSV 파일 경로를 입력하세요)
-class_map_path = '/Users/limtaeyeon/aiServer/aiServer/yamnet_class_map.csv'
+class_map_path = '/home/ubuntu/django-server/aiServer/yamnet_class_map.csv'
 
 # CSV 파일을 로드하여 클래스 매핑
 class_map = pd.read_csv(class_map_path)
