@@ -124,7 +124,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',  # JSON 응답만 허용
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.parsers.MultiPartParser',  # multipart/form-data 처리
+        'rest_framework.parsers.FormParser',    # JSON 응답만 허용
     ),
 }
 

@@ -5,12 +5,19 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 import os
 from .utils import classify_sound, transcribe_audio
+import logging
+
+logger = logging.getLogger(__name__)
 
 @api_view(["POST"])
 @parser_classes([MultiPartParser, FormParser])  # multipart/form-data 지원
 def upload_audio(request):
+    logger.info(f"Headers: {request.headers}")
+    logger.info(f"Content-Type: {request.content_type}")
+    logger.info(f"FILES: {request.FILES}")
+
     if "file" not in request.FILES:
-        return Response({"error": "파일을 업로드하세요."}, status=400)
+        return Response({"error": "파일을 업로드하세요. FILES가 비어 있음"}, status=400)
 
     file = request.FILES["file"]
 
