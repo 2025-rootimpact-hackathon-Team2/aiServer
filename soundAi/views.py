@@ -23,7 +23,7 @@ def upload_audio(request):
     file_name = default_storage.save("uploads/" + file.name, ContentFile(file.read()))
     file_path = default_storage.path(file_name)
 
-    try
+    try:
         # 🔹 YAMNet을 이용한 소리 감지
         sound_class = classify_sound(file_path)
 
