@@ -5,7 +5,6 @@ from django.core.files.base import ContentFile
 import os
 from .utils import classify_sound, transcribe_audio
 
-# 업로드된 오디오 파일을 처리하는 API 뷰
 @api_view(["POST"])
 def upload_audio(request):
     if "file" not in request.FILES:
@@ -29,7 +28,7 @@ def upload_audio(request):
             "detected_keywords": transcription["keywords"]
         }
     except Exception as e:
-        return Response({"error": f"서버 오류: {str(e)}"}, status=500)
+        return Response({"error": str(e)}, status=500)
     finally:
         # 파일 삭제 (선택 사항)
         os.remove(file_path)
