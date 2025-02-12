@@ -129,10 +129,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'http://43.202.242.205:3000',  # 배포된 React 서버
-    'http://43.202.242.205:8080',  # Spring Boot 서버
-    'http://43.202.242.205',  # Django 서버 (포트 80)
-    'https://your-frontend-production-domain.com',  # 실제 프론트엔드 배포 도메인
+    'http://localhost:8080',
 ]
 CORS_ALLOW_CREDENTIALS = True  # 쿠키 및 인증 정보 허용
 CORS_ALLOW_METHODS = [
