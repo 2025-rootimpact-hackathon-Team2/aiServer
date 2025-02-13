@@ -62,11 +62,12 @@ def upload_audio(request):
         logger.exception("오디오 처리 중 오류 발생")
         return Response({"error": str(e)}, status=500)
     finally:
+        logger.warning(f"끝")
         # 업로드 및 변환 파일 삭제
-        try:
-            if os.path.exists(file_path):
-                os.remove(file_path)
-        except Exception as e:
-            logger.warning(f"파일 삭제 실패: {file_path}. {str(e)}")
+        # try:
+        #     if os.path.exists(file_path):
+        #         os.remove(file_path)
+        # except Exception as e:
+        #     logger.warning(f"파일 삭제 실패: {file_path}. {str(e)}")
 
     return Response(response_data, status=200)
