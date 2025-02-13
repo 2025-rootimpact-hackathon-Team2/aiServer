@@ -24,7 +24,7 @@ except Exception as e:
 
 # CSV 파일 경로: 서버 환경에 맞게 절대 경로를 설정하세요.
 # 예시: 환경변수나 settings에서 경로를 가져오도록 할 수도 있음.
-class_map_path = os.environ.get("YAMNET_CLASS_MAP", "/Users/limtaeyeon/aiServer/aiServer/yamnet_class_map.csv")
+class_map_path = os.environ.get("YAMNET_CLASS_MAP", "/home/ubuntu/django-server/aiServer/yamnet_class_map.csv")
 
 try:
     class_map = pd.read_csv(class_map_path)
